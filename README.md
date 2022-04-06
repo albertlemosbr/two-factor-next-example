@@ -68,5 +68,5 @@ curl -X 'GET' 'http://localhost:3000/auth/qr-code' -H 'accept: */*'
 POST => localhost:3000/auth/validate/ => To validate our token with our base32
 
 ```bash
-curl -d '{ "token": "441096", "token": "441096" }' -X 'POST' 'http://localhost:3000/auth/validate' -H 'accept: */*'
+curl -d '{ "token": "token_input_here" }' -X 'POST' 'http://localhost:3000/auth/validate' -H 'accept: */*'
 ```

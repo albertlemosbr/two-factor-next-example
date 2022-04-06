@@ -3,6 +3,8 @@ import { generateSecret, totp } from 'speakeasy';
 
 @Controller('auth')
 export class AuthController {
+  public secretBase32: string;
+
   @Get('qr-code')
   @Header('content-type', 'text/html')
   async getQRCode(@Req() req): Promise<any> {
@@ -13,6 +15,7 @@ export class AuthController {
       });
 
       //secret.base32 this prop used by check the user token input with logic in speakeasy
+      this.secretBase32 = secret.base32;
 
       return `<a title=''>
           <img src='https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl=${secret.otpauth_url}' border=0>
@@ -27,7 +30,7 @@ export class AuthController {
   async getQRCodeValidate(@Body() body): Promise<boolean> {
     try {
       const verify = totp.verify({
-        secret: body.secret,
+        secret: this.secretBase32,
         encoding: 'base32',
         token: body.token,
       });
