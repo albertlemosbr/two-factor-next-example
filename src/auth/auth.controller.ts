@@ -10,7 +10,7 @@ export class AuthController {
   async getQRCode(@Req() req): Promise<any> {
     try {
       const secret = generateSecret({
-        name: 'Text to show in Auth App', //display text in Google Auth App, you can put your domain and user email here
+        name: 'Text to show in Auth App ', //display text in Google Auth App, you can put your domain and user email here
         length: 16, //length of base32, this prop must be 8 multiple with limit at 32
       });
 
